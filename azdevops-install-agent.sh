@@ -36,8 +36,16 @@ case "$AZ_AGENT_ARCH" in
 	;;
 esac
 
-URL="https://download.agent.dev.azure.com/agent/$AZ_AGENT_VERSION/vsts-agent-linux-$AZ_AGENT_ARCH-$AZ_AGENT_VERSION.tar.gz"
+FILE="vsts-agent-linux-$AZ_AGENT_ARCH-$AZ_AGENT_VERSION.tar.gz"
+URL="https://download.agent.dev.azure.com/agent/$AZ_AGENT_VERSION/$FILE"
 echo "===== Setup of Azure Agent ====="
 echo "Azure Agent download url: $URL"
-echo ""
+echo "Downloading ..."
+wget -O "$FILE" --continue -- "$URL"
+echo "[ OK ]"
+tar zxvf "$FILE"
+echo "[ OK ] Files extracted"
+echo "Installing agent ..."
+./config.sh
+echo "[ OK ] Agent installed"
 
