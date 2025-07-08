@@ -1,0 +1,38 @@
+#!/bin/bash
+set -e
+
+if [[ -n "${AZ_AGENT_VERSION:-}" ]]; then
+	cat <<'EOM'
+ERROR: AZ_AGENT_VERSION variable is not set or empty"
+
+Please set variablet to the version number you want to install
+
+Ej:
+export AZ_AGENT_VERSION='4.248.0'
+
+Optional you can provide different architecture from x64 with
+
+export AZ_AGENT_ARCH='arm'
+
+valid options are: x64, arm, arm64
+EOM
+exit 1
+fi
+
+if [[ -n "${AZ_AGENT_ARCH:-}" ]]; then
+	$AZ_AGENT_ARCH='x64'
+fi
+case "$AZ_AGENT_ARCH" in
+	x64|arm|arm64)
+	;;
+	*)
+		echo "ERROR: AZ_AGENT_ARCH $AZ_AGENT_ARCH not supported."
+		exit 1
+	;;
+esac
+
+URL="https://download.agent.dev.azure.com/agent/$AZ_AGENT_VERSION/vsts-agent-linux-$AZ_AGENT_ARCH-$AZ_AGENT_VERSION.tar.gz"
+echo "===== Setup of Azure Agent ====="
+echo "Azure Agent download url: $URL"
+echo ""
+
