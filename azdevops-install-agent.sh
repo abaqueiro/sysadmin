@@ -3,9 +3,15 @@ set -e
 
 if [[ -n "${AZ_AGENT_VERSION:-}" ]]; then
 	cat <<'EOM'
+===============================================================
+This script will setup the Azure agent in the current directory
+and with the current user, so do not forget to run first
+
+mkdir agent && cd agent
+
 ERROR: AZ_AGENT_VERSION variable is not set or empty"
 
-Please set variablet to the version number you want to install
+Please set variable to the version number you want to install
 
 Ej:
 export AZ_AGENT_VERSION='4.248.0'
