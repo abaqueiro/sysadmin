@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-if [[ -n "${AZ_AGENT_VERSION:-}" ]]; then
+if [ "$AZ_AGENT_VERSION" = '' ]; then
 	cat <<'EOM'
 ===============================================================
 This script will setup the Azure agent in the current directory
@@ -25,8 +25,8 @@ EOM
 exit 1
 fi
 
-if [[ -n "${AZ_AGENT_ARCH:-}" ]]; then
-	$AZ_AGENT_ARCH='x64'
+if [ "$AZ_AGENT_ARCH" = '' ]; then
+	AZ_AGENT_ARCH='x64'
 fi
 case "$AZ_AGENT_ARCH" in
 	x64|arm|arm64)
