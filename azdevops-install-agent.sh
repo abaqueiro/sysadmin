@@ -9,18 +9,15 @@ and with the current user, so do not forget to run first
 
 mkdir agent && cd agent
 
-ERROR: AZ_AGENT_VERSION variable is not set or empty"
-
+ERROR: AZ_AGENT_VERSION variable is not set or empty
 Please set variable to the version number you want to install
-
 Ej:
 export AZ_AGENT_VERSION='4.248.0'
 
 Optional you can provide different architecture from x64 with
-
 export AZ_AGENT_ARCH='arm'
-
 valid options are: x64, arm, arm64
+
 EOM
 exit 1
 fi
